@@ -5,6 +5,7 @@ import 'data/repositories/location/location_repository.dart';
 import 'data/repositories/ride/ride_repository.dart';
 import 'data/repositories/ride_preference/ride_preference_repository.dart';
 import 'ui/screens/home/home_screen.dart';
+import 'ui/states/ride_preference_state.dart';
 import 'ui/theme/theme.dart';
 
 Widget createApp({
@@ -17,6 +18,11 @@ Widget createApp({
       Provider<LocationRepository>.value(value: locationRepository),
       Provider<RideRepository>.value(value: rideRepository),
       Provider<RidePreferenceRepository>.value(value: ridePreferenceRepository),
+      ChangeNotifierProvider<RidePreferenceState>(
+        create: (context) => RidePreferenceState(
+          repository: context.read<RidePreferenceRepository>(),
+        ),
+      ),
     ],
     child: const BlaBlaApp(),
   );
