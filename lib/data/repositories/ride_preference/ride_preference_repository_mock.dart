@@ -1,9 +1,15 @@
+import '../../dummy_data.dart';
 import '../../../model/ride_pref/ride_pref.dart';
 import 'ride_preference_repository.dart';
 
 class RidePreferenceRepositoryMock implements RidePreferenceRepository {
+  RidePreferenceRepositoryMock()
+      : _preferenceHistory = List<RidePreference>.from(fakeRidePrefs),
+        _selectedPreference =
+            fakeRidePrefs.isNotEmpty ? fakeRidePrefs.last : null;
+
   RidePreference? _selectedPreference;
-  final List<RidePreference> _preferenceHistory = [];
+  final List<RidePreference> _preferenceHistory;
 
   @override
   int get maxAllowedSeats => 8;
