@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../model/ride_pref/ride_pref.dart';
-import '../../../../services/ride_prefs_service.dart';
 import '../../../../utils/animations_util.dart';
 import '../../../states/ride_preference_state.dart';
 import '../../rides_selection/rides_selection_screen.dart';
@@ -25,10 +24,6 @@ class HomeViewModel extends ChangeNotifier {
     RidePreference selectedPreference,
   ) async {
     _ridePreferenceState.selectPreference(selectedPreference);
-
-    // Keep the current ride selection flow working until the rides screen
-    // stops relying on the legacy static service.
-    RidePrefsService.selectPreference(selectedPreference);
 
     await Navigator.of(context).push(
       AnimationUtils.createBottomToTopRoute(const RidesSelectionScreen()),
